@@ -2,7 +2,7 @@ import { useNavigation } from "@react-navigation/native"
 import React from "react"
 import { TouchableOpacity, Text, useColorScheme, StyleSheet } from "react-native"
 
-const BackButton = (props) => {
+const BackButton = (props):JSX.Element => {
     const { route } = props
     const navigation = useNavigation();
     const isDarkMode = useColorScheme() === 'dark';

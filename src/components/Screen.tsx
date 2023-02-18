@@ -13,7 +13,7 @@ interface ScreenProps {
     children: JSX.Element | null
 }
 
-const Screen = (props: ScreenProps) => {
+const Screen = (props: ScreenProps):JSX.Element => {
     const { children } = props
     const isDarkMode = useColorScheme() === 'dark';
 

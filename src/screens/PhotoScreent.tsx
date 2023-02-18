@@ -9,15 +9,14 @@ import {
 import Screen from '../components/Screen'
 import Colors from 'react-native/Libraries/NewAppScreen/components/Colors';
 import { useDispatch, useSelector } from 'react-redux';
-import { Racer } from '../types';
 import { RootState } from '../store/redux';
 
 
-const PhotoScreen = (props) => {
+const PhotoScreen = (props):JSX.Element=> {
     const isDarkMode = useColorScheme() === 'dark';
     const dispatch = useDispatch()
     //@ts-ignore
-    const racers: Racer[] = useSelector((state: RootState) => state.racersReducer.racers)
+    const racers = useSelector((state: RootState) => state.racersReducer.racers)
     //@ts-ignore
     const racersFetching: boolean = useSelector((state: RootState) => state.racersReducer.racers_fetching)
 
