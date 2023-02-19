@@ -1,4 +1,5 @@
 import { call, put, takeEvery } from 'redux-saga/effects'
+import axios, { AxiosError } from 'axios';
 
 import { photosFailure, photosSuccess, PHOTOS_REQUEST } from '../redux/photos';
 
@@ -15,10 +16,19 @@ function* photosRequestSaga() {
         if (isApiResponseOk(data)) {
             yield put(photosSuccess(data.photos.photo))
         } else {
+            console.log('data er',data);
+            
             yield put(photosFailure(data.message))
         }
-    } catch (err) {
-        yield put(photosFailure(err))
+    } catch (error) {
+        if (axios.isAxiosError(error)) {
+            console.log('error message: ', error.message);
+            yield put(photosFailure(error.message))
+          } else {
+            console.log('unexpected error: ', error);
+            yield put(photosFailure('unexpected error'))
+          }
+       
     }
 
 }

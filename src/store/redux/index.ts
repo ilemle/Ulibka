@@ -7,15 +7,16 @@ import { photosReducer } from "./photos";
 import { rootWatcher } from "../saga/index";
 
 
-const persistConfig = {
-    key: 'root',
-    storage: AsyncStorage,
-    
-}
 
 const rootReducer = combineReducers({
     photosReducer,
 })
+
+const persistConfig = {
+    key: 'root',
+    storage: AsyncStorage,
+    blackList:{photosReducer},
+}
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)
 const sagaMiddleware = createSagaMiddleware()

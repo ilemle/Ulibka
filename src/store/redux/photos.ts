@@ -35,11 +35,14 @@ export const photosReducer = (state = defaultState, action) => {
             return {
                 ...state,
                 photos,
+                photos_error: null,
                 photos_fetching: false,
             }
         }
         case PHOTOS_FAILURE: {
-            const { error } = action.payload
+            const error: string = action.payload
+            console.log('error in REDUX', error);
+
             return { ...state, photos_error: error, photos_fetching: false }
         }
 

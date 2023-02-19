@@ -2,11 +2,10 @@
 import React, { useEffect } from 'react';
 import {
     StyleSheet,
-    useColorScheme,
     FlatList,
-    View,
     Text,
-    RefreshControl
+    RefreshControl,
+    TextStyle
 } from 'react-native'
 import { useDispatch, useSelector } from 'react-redux';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
@@ -17,7 +16,7 @@ import { photosRequest } from '../store/redux/photos';
 
 import { IPhoto } from '../types';
 import { RootStackParamList } from '../navigation/navigation';
-import { Loader, PhotoFlatList, Screen } from '../components'
+import { Loader, PhotoFlatList, Screen, Error } from '../components'
 
 
 
@@ -45,17 +44,12 @@ const MainScreen = (): JSX.Element => {
         return <Loader />
     }
 
-    if (photoErr) {
-        return (
-            <Text>
-                {photoErr}
-            </Text>
-        )
-    }
+
     return (
         <Screen>
             <>
                 <Text style={styles.versionText}>версия {require('../../package.json').version}</Text>
+                {photoErr && <Error style={styles.errorText} error={photoErr} />}
                 <FlatList
                     data={photos}
                     renderItem={({ item }) => {
@@ -69,6 +63,7 @@ const MainScreen = (): JSX.Element => {
                         refreshing={photosFetching && !photos}
                         onRefresh={onRefreshPhotos}
                     />}
+                    ListEmptyComponent={<Text style={styles.emptyListText}>Список пуст</Text>}
                 />
             </>
         </Screen>
@@ -76,13 +71,26 @@ const MainScreen = (): JSX.Element => {
 
 };
 
+const defaultTextStyle = {
+    textAlign: 'center',
+    marginBottom: 20,
+
+} as TextStyle
+
 const styles = StyleSheet.create({
     image: {
         marginBottom: 20,
     },
     versionText: {
-        textAlign: 'center',
-        marginBottom: 20,
+        ...defaultTextStyle
+    },
+    emptyListText: {
+        ...defaultTextStyle,
+        fontSize: 24,
+    },
+    errorText: {
+        ...defaultTextStyle,
+        fontSize: 24,
     }
 });
 
