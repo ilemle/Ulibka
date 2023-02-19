@@ -1,31 +1,30 @@
 
-import React, { useState } from 'react';
+import React from 'react';
 import {
     StyleSheet,
-    useColorScheme,
     View,
     Text,
 } from 'react-native'
+
 import Screen from '../components/Screen'
-import Colors from 'react-native/Libraries/NewAppScreen/components/Colors';
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../store/redux';
+import { PhotoFlatList } from '../components';
+import { IPhoto } from '../types';
 
 
-const PhotoScreen = (props):JSX.Element=> {
-    const isDarkMode = useColorScheme() === 'dark';
-    const dispatch = useDispatch()
-    //@ts-ignore
-    const racers = useSelector((state: RootState) => state.racersReducer.racers)
-    //@ts-ignore
-    const racersFetching: boolean = useSelector((state: RootState) => state.racersReducer.racers_fetching)
+const PhotoScreen = (props): JSX.Element => {
 
+    const { route } = props
+    const { photo }: { photo: IPhoto } = route.params
 
     return (
         <Screen>
             <View style={{ flex: 1 }}>
-
-               <Text>2</Text>
+                <Text style={styles.title}>{photo.title}</Text>
+                <PhotoFlatList
+                    onPress={() => { }}
+                    photo={photo}
+                    style={styles.image}
+                />
             </View>
         </Screen>
     )
@@ -33,7 +32,13 @@ const PhotoScreen = (props):JSX.Element=> {
 };
 
 const styles = StyleSheet.create({
-
+    image: {
+        flex: 1
+    },
+    title: {
+        fontSize: 24,
+        textAlign: 'center',
+    }
 });
 
 export default PhotoScreen;

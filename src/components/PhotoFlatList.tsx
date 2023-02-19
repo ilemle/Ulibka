@@ -16,11 +16,7 @@ const PhotoFlatList = (props: IPhotoFlatList): JSX.Element => {
         photo,
     } = props
 
-    const width = Dimensions.get('screen').width
-    // const height = 
 
-    const [imageHeight, setImageHeight] = useState<number>(200)
-    console.log('imageHeight');
 
     return (
         <TouchableOpacity
@@ -28,7 +24,6 @@ const PhotoFlatList = (props: IPhotoFlatList): JSX.Element => {
             onPress={onPress}
         >
             <Image
-                onLayout={(event) => setImageHeight(event.nativeEvent.layout.height)}
                 style={[styles.image]}
                 source={{ uri: photo.url_l }}
                 resizeMode={'contain'}

@@ -4,10 +4,8 @@ import {
     SafeAreaView,
     StatusBar,
     StyleSheet,
-    useColorScheme,
     View,
 } from 'react-native'
-import Colors from 'react-native/Libraries/NewAppScreen/components/Colors';
 
 interface ScreenProps {
     children: JSX.Element | null
@@ -15,8 +13,6 @@ interface ScreenProps {
 
 const Screen = (props: ScreenProps):JSX.Element => {
     const { children } = props
-    const isDarkMode = useColorScheme() === 'dark';
-
     return (
         <SafeAreaView style={styles.mainSafeAreaStyle}>
             <StatusBar

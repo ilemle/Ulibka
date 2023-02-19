@@ -1,12 +1,8 @@
-import { useNavigation } from "@react-navigation/native"
 import React from "react"
-import { useColorScheme, StyleSheet, View, ActivityIndicator } from "react-native"
+import { StyleSheet, View, ActivityIndicator } from "react-native"
 
-const Loader = (props):JSX.Element => {
-    const { route } = props
-    const navigation = useNavigation();
-    const isDarkMode = useColorScheme() === 'dark';
-
+const Loader = ():JSX.Element => {
+    
     return (
         <View
             style={styles.viewLoader}

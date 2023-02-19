@@ -47,6 +47,4 @@ export const photosReducer = (state = defaultState, action) => {
         default: return state
     }
 }
-// type racersReducerType = typeof racersReducer
-// export const racersStore = legacy_createStore(racersReducer)
 

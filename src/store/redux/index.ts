@@ -1,9 +1,10 @@
 import { legacy_createStore, combineReducers, applyMiddleware, } from "redux";
-import { photosReducer } from "./photos";
 import createSagaMiddleware from "redux-saga";
-import { rootWatcher } from "../saga/index";
-import { persistReducer, persistStore } from "redux-persist";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { persistReducer, persistStore } from "redux-persist";
+
+import { photosReducer } from "./photos";
+import { rootWatcher } from "../saga/index";
 
 
 const persistConfig = {
