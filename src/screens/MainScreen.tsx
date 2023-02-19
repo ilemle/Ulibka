@@ -49,7 +49,10 @@ const MainScreen = (): JSX.Element => {
         <Screen>
             <>
                 <Text style={styles.versionText}>версия {require('../../package.json').version}</Text>
-                {photoErr && <Error style={styles.errorText} error={photoErr} />}
+                {photoErr && <>
+                    <Text style={styles.errorText}>Не удалось обновить по причине:</Text>
+                    <Error style={styles.errorText} error={photoErr} />
+                </>}
                 <FlatList
                     data={photos}
                     renderItem={({ item }) => {
@@ -74,7 +77,6 @@ const MainScreen = (): JSX.Element => {
 const defaultTextStyle = {
     textAlign: 'center',
     marginBottom: 20,
-
 } as TextStyle
 
 const styles = StyleSheet.create({
@@ -91,7 +93,7 @@ const styles = StyleSheet.create({
     errorText: {
         ...defaultTextStyle,
         fontSize: 24,
-    }
+    },
 });
 
 export default MainScreen;
